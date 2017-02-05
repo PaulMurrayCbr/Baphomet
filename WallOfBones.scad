@@ -32,8 +32,8 @@ OF_floorGapUpper = 2; // wall texture * 2
 
 module BoneMaze_floor_2x2() {
     OF_Floor(baseTextureIndex = 0) {
-      scale([1, 1, OF_floor_texture_depth])
-      import("WallOfBones_face.stl") ;
+      scale([.1, .1, 1])
+      import("WallOfBones_floor.stl") ;
     }
 }
 
@@ -59,11 +59,11 @@ module BoneMaze_wall_2x2() {
         wallClip = [0,OF_wall_thickness-OF_wall_texture_depth,0,0],
         baseTextureIndex = 0
     ) {
-      scale([1, 1, OF_floor_texture_depth])
-      import("WallOfBones_face.stl") ;
+      scale([.1, .1, 1])
+      import("WallOfBones_floor.stl") ;
     }
 }
 
-BoneMaze_wall_2x2();
+BoneMaze_floor_2x2();
 
 
