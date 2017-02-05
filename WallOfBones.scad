@@ -30,10 +30,18 @@ OF_floorTexLower = 2; // from openforge
 OF_floorGapLower = .65; // from openforge
 OF_floorGapUpper = 2; // wall texture * 2
 
+module floortex() {
+    
+    cube([OF_square*2,OF_square*2,OF_floorTexLower+.01]);
+    
+    translate([0,0,OF_floorTexLower])
+      scale([.1, .1, (OF_floorTexUpper-OF_floorTexLower)/OF_floorTexUpper])
+      import("WallOfBones_floor.stl") ;
+}
+
 module BoneMaze_floor_2x2() {
     OF_Floor(baseTextureIndex = 0) {
-      scale([.1, .1, 1])
-      import("WallOfBones_floor.stl") ;
+      floortex();
     }
 }
 
@@ -41,7 +49,8 @@ module BoneMaze_wall_2x2() {
 
     OF_Wall(
       top_texture_index = 1,
-      wall_texture_index = [0,0,1,1],
+      wall_texture_index = [0,0,-1,-1],
+      wall_flush = [false, false, true, true],
       wall_base_clip = [
         OF_base_height
         +OF_floor_texture_depth
@@ -59,11 +68,10 @@ module BoneMaze_wall_2x2() {
         wallClip = [0,OF_wall_thickness-OF_wall_texture_depth,0,0],
         baseTextureIndex = 0
     ) {
-      scale([.1, .1, 1])
-      import("WallOfBones_floor.stl") ;
+      floortex();
     }
 }
 
-BoneMaze_floor_2x2();
+BoneMaze_wall_2x2();
 
 
